@@ -1,0 +1,52 @@
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:19:27.466Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:19:27.468Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:19:27.469Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:19:27.469Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:19:35.977Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:19:35.978Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:19:35.978Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:19:35.978Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:25:06.006Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:25:06.007Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:25:06.007Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:25:06.007Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:26:44.160Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:26:44.161Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:26:44.161Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:26:44.161Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:27:07.205Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:27:07.207Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:27:07.208Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:27:07.208Z"}
+{"extentions":{"code":"BAD_REQUEST","stacktrace":["GraphQLError: User with email already exists","    at handleError (/Users/hnx/Documents/codes/grabbit/server/src/graphql/resolvers/user.resolvers.ts:10:11)","    at Object.createUser (/Users/hnx/Documents/codes/grabbit/server/src/graphql/resolvers/user.resolvers.ts:55:16)"]},"level":"error","locations":[{"column":3,"line":2}],"message":"GraphQL Error: User with email already exists","path":["createUser"],"service":"grabbit-server","timestamp":"2025-07-06T08:27:22.031Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:27:29.805Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:27:29.806Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:27:29.807Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:27:29.807Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:27:39.141Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:27:39.142Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:27:39.142Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:27:39.142Z"}
+{"extentions":{"code":"BAD_REQUEST","stacktrace":["GraphQLError: User with email already exists","    at handleError (/Users/hnx/Documents/codes/grabbit/server/src/graphql/resolvers/user.resolvers.ts:10:11)","    at Object.createUser (/Users/hnx/Documents/codes/grabbit/server/src/graphql/resolvers/user.resolvers.ts:55:16)"]},"level":"error","locations":[{"column":3,"line":2}],"message":"GraphQL Error: User with email already exists","path":["createUser"],"service":"grabbit-server","timestamp":"2025-07-06T08:27:40.128Z"}
+{"extentions":{"code":"BAD_REQUEST","stacktrace":["GraphQLError: User with email already exists","    at handleError (/Users/hnx/Documents/codes/grabbit/server/src/graphql/resolvers/user.resolvers.ts:10:11)","    at Object.createUser (/Users/hnx/Documents/codes/grabbit/server/src/graphql/resolvers/user.resolvers.ts:55:16)"]},"level":"error","locations":[{"column":3,"line":2}],"message":"GraphQL Error: User with email already exists","path":["createUser"],"service":"grabbit-server","timestamp":"2025-07-06T08:27:40.140Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:27:48.330Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:27:48.331Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:27:48.331Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:27:48.331Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:27:50.709Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:27:50.710Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:27:50.710Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:27:50.710Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:28:21.671Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:28:21.672Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:28:21.672Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:28:21.673Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:29:23.111Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:29:23.112Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:29:23.112Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:29:23.112Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-06T08:29:41.117Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T08:29:41.119Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T08:29:41.119Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T08:29:41.119Z"}
+{"level":"info","message":"Shutting down prisma client...","service":"grabbit-server","timestamp":"2025-07-06T08:29:59.712Z"}

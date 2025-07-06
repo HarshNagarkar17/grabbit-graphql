@@ -1,3 +1,5 @@
+import { isDevelopment } from "@/config/environment";
+import logger from "@/utils/logger";
 import { PrismaClient } from "@prisma/client";
 
 declare global {
@@ -14,6 +16,13 @@ const createPrismaClient = () => {
     ],
   });
 
+  if (isDevelopment) {
+    client.$on("query", (e) => {
+      logger.debug("Query: ", e.query);
+      logger.debug("Params: ", e.params);
+      logger.debug("Duration: ", e.duration + "ms");
+    });
+  }
   return client;
 };
 
@@ -25,6 +34,7 @@ if (process.env.NODE_ENV !== "production") {
 
 // Graceful shutdown
 const gracefulShutdown = async () => {
+  logger.info("Shutting down prisma client...");
   await prisma.$disconnect();
   process.exit(0);
 };
