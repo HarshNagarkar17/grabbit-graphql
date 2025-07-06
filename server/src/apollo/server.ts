@@ -4,6 +4,10 @@ import { Application, json } from "express";
 import { expressMiddleware } from "@apollo/server/express4";
 import logger from "@/utils/logger";
 import { isProduction } from "@/config/environment";
+import {
+  authenticatedUser,
+  AuthenticatedUserRequest,
+} from "@/middleware/auth.middleware";
 
 export const startApolloServer = async (app: Application) => {
   const server = new ApolloServer({
@@ -28,5 +32,19 @@ export const startApolloServer = async (app: Application) => {
 
   await server.start();
 
-  app.use("/graphql", json(), expressMiddleware(server));
+  app.use(
+    "/graphql",
+    json(),
+    expressMiddleware(server, {
+      context: async ({ req }) => {
+        const authenticatedReq = req as AuthenticatedUserRequest;
+        const user = await authenticatedUser(authenticatedReq);
+
+        return {
+          user,
+          req: authenticatedReq,
+        };
+      },
+    })
+  );
 };
