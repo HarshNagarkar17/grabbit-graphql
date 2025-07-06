@@ -3,6 +3,7 @@ import cors from "cors";
 import { env } from "@/config/environment";
 import { startApolloServer } from "./apollo/server";
 import logger from "./utils/logger";
+import { errorHandler, notFoundHandler } from "./middleware/error.middleware";
 
 const app = express();
 
@@ -39,6 +40,10 @@ const startServer = async () => {
     const port = env.PORT;
 
     await startApolloServer(app);
+    app.use(notFoundHandler);
+
+    app.use(errorHandler);
+
     app.listen(port, () => {
       logger.info(`🚀 Server running on http://localhost:${port}`);
       logger.info(`📊 GraphQL endpoint: http://localhost:${port}/graphql`);
