@@ -168,3 +168,43 @@
 {"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-06T09:01:48.871Z"}
 {"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-06T09:01:48.871Z"}
 {"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-06T09:01:48.871Z"}
+{"level":"info","message":"Connecting to database...","service":"grabbit-server","timestamp":"2025-07-07T03:02:33.744Z"}
+{"level":"info","message":"Database connected..","service":"grabbit-server","timestamp":"2025-07-07T03:02:33.782Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-07T03:02:33.805Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-07T03:02:33.805Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-07T03:02:33.805Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-07T03:02:33.805Z"}
+{"level":"info","message":"Shutting down prisma client...","service":"grabbit-server","timestamp":"2025-07-07T03:02:47.611Z"}
+{"level":"info","message":"Shutting down prisma client...","service":"grabbit-server","timestamp":"2025-07-07T03:02:47.613Z"}
+{"level":"info","message":"Connecting to database...","service":"grabbit-server","timestamp":"2025-07-07T03:02:49.990Z"}
+{"clientVersion":"6.11.1","errorCode":"P1001","level":"error","message":"Failed to connect to database Can't reach database server at `localhost:5431`\n\nPlease make sure your database server is running at `localhost:5431`.","name":"PrismaClientInitializationError","service":"grabbit-server","stack":"PrismaClientInitializationError: Can't reach database server at `localhost:5431`\n\nPlease make sure your database server is running at `localhost:5431`.\n    at r (/Users/hnx/Documents/codes/grabbit/server/node_modules/@prisma/client/runtime/library.js:112:2770)\n    at async connectDatabase (/Users/hnx/Documents/codes/grabbit/server/src/database/connection.ts:18:5)\n    at async startServer (/Users/hnx/Documents/codes/grabbit/server/src/index.ts:43:5)","timestamp":"2025-07-07T03:02:49.997Z"}
+{"level":"info","message":"Connecting to database...","service":"grabbit-server","timestamp":"2025-07-07T03:03:13.511Z"}
+{"level":"info","message":"Database connected..","service":"grabbit-server","timestamp":"2025-07-07T03:03:13.542Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-07T03:03:13.563Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-07T03:03:13.563Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-07T03:03:13.563Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-07T03:03:13.563Z"}
+{"level":"info","message":"Connecting to database...","service":"grabbit-server","timestamp":"2025-07-07T03:04:06.166Z"}
+{"level":"info","message":"Database connected..","service":"grabbit-server","timestamp":"2025-07-07T03:04:06.182Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-07T03:04:06.202Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-07T03:04:06.202Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-07T03:04:06.202Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-07T03:04:06.202Z"}
+{"level":"info","message":"Connecting to database...","service":"grabbit-server","timestamp":"2025-07-07T03:04:42.923Z"}
+{"level":"info","message":"Database connected..","service":"grabbit-server","timestamp":"2025-07-07T03:04:42.939Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-07T03:04:42.961Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-07T03:04:42.961Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-07T03:04:42.961Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-07T03:04:42.961Z"}
+{"level":"info","message":"Connecting to database...","service":"grabbit-server","timestamp":"2025-07-07T03:07:02.163Z"}
+{"level":"info","message":"Database connected..","service":"grabbit-server","timestamp":"2025-07-07T03:07:02.179Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-07T03:07:02.200Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-07T03:07:02.200Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-07T03:07:02.200Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-07T03:07:02.200Z"}
+{"level":"info","message":"Connecting to database...","service":"grabbit-server","timestamp":"2025-07-07T03:07:19.818Z"}
+{"level":"info","message":"Database connected..","service":"grabbit-server","timestamp":"2025-07-07T03:07:19.834Z"}
+{"level":"info","message":"🚀 Server running on http://localhost:4000","service":"grabbit-server","timestamp":"2025-07-07T03:07:19.855Z"}
+{"level":"info","message":"📊 GraphQL endpoint: http://localhost:4000/graphql","service":"grabbit-server","timestamp":"2025-07-07T03:07:19.855Z"}
+{"level":"info","message":"🏥 Health check: http://localhost:4000/health","service":"grabbit-server","timestamp":"2025-07-07T03:07:19.855Z"}
+{"level":"info","message":"🌍 Environment: development","service":"grabbit-server","timestamp":"2025-07-07T03:07:19.856Z"}

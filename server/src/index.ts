@@ -4,6 +4,7 @@ import { env } from "@/config/environment";
 import { startApolloServer } from "./apollo/server";
 import logger from "./utils/logger";
 import { errorHandler, notFoundHandler } from "./middleware/error.middleware";
+import { connectDatabase, disconnectFromDatabase } from "./database/connection";
 
 const app = express();
 
@@ -25,6 +26,20 @@ app.get("/health", (_, res) => {
   });
 });
 
+const gracefulShutdown = async (signal: string) => {
+  logger.info(`Received ${signal}. Starting graceful shutdown...`);
+
+  try {
+    await disconnectFromDatabase();
+  } catch (error) {
+    logger.error("Error during graceful shutdown", error);
+    process.exit(1);
+  }
+};
+
+process.on("SIGTERM", gracefulShutdown);
+process.on("SIGINT", gracefulShutdown);
+
 process.on("unhandledRejection", (reason, promise) => {
   logger.error("Unhandled Rejection at:", promise, "reason:", reason);
   process.exit(1);
@@ -39,6 +54,7 @@ const startServer = async () => {
   try {
     const port = env.PORT;
 
+    await connectDatabase();
     await startApolloServer(app);
     app.use(notFoundHandler);
 
