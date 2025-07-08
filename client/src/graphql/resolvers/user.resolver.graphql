@@ -1,0 +1,27 @@
+mutation createUser($input: AuthPayload!) {
+  createUser(input: $input) {
+    user {
+      username
+      email
+      id
+    }
+    tokens {
+      accessToken
+      refreshToken
+    }
+  }
+}
+
+mutation Login($input: LoginPayload!) {
+  login(input: $input) {
+    user {
+      id
+      username
+      email
+    }
+    tokens {
+      accessToken
+      refreshToken
+    }
+  }
+}

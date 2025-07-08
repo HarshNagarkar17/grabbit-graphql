@@ -12,10 +12,34 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema, type SignUpSchema } from "@/schema/auth";
 import FormProvider from "@/components/FormProvider";
 import RHFInput from "@/components/rhf-input";
+import { useMutation } from "@apollo/client";
+import { CreateUserDocument } from "@/graphql/types";
+import { toast } from "sonner";
 
 const SignUpPage = () => {
+  const [registerMutation, { loading }] = useMutation(CreateUserDocument, {
+    onError(error) {
+      console.log("got error", error.graphQLErrors);
+      if (error.graphQLErrors.length)
+        toast.error(error.graphQLErrors[0].message);
+      else if (error.networkError) toast.error(error.networkError.message);
+      else toast.error("Failed to register!");
+    },
+    onCompleted(data, clientOptions) {
+      console.log("got data", data, clientOptions);
+    },
+  });
+
   const handleSubmit = (values: SignUpSchema) => {
-    console.log({ values });
+    registerMutation({
+      variables: {
+        input: {
+          email: values.email,
+          username: values.username,
+          password: values.password,
+        },
+      },
+    });
   };
 
   const methods = useForm<SignUpSchema>({
@@ -75,7 +99,10 @@ const SignUpPage = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm mt-6"
+                className={`w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm mt-6 ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={loading}
               >
                 Create Account
               </Button>
