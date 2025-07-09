@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,10 +12,38 @@ import RHFInput from "@/components/rhf-input";
 import { useForm } from "react-hook-form";
 import { signInSchema, type SignInSchema } from "@/schema/auth";
 import FormProvider from "@/components/FormProvider";
+import { useMutation } from "@apollo/client";
+import { LoginDocument } from "@/graphql/types";
+import { toast } from "sonner";
+import { setItem } from "@/services/local-storage";
+import { LOCALSTORAGE_KEYS, ROUTES } from "@/constants";
 
 const SignInPage = () => {
+  const navigate = useNavigate();
+  const [login, { loading }] = useMutation(LoginDocument, {
+    onError(error) {
+      if (error.graphQLErrors.length)
+        toast.error(error.graphQLErrors[0].message);
+      else if (error.networkError?.message)
+        toast.error(error.networkError.message);
+      else toast.error("Failed to login!");
+    },
+    onCompleted(data) {
+      if (data.login.tokens) {
+        const { accessToken, refreshToken } = data.login.tokens;
+        setItem(LOCALSTORAGE_KEYS.AUTH.ACCESS_TOKEN, accessToken);
+        setItem(LOCALSTORAGE_KEYS.AUTH.REFRESH_TOKEN, refreshToken);
+        toast.success("Logged In!");
+        navigate(ROUTES.INDEX);
+      }
+    },
+  });
   const handleSubmit = (values: SignInSchema) => {
-    console.log({ values });
+    login({
+      variables: {
+        input: { email: values.email, password: values.password },
+      },
+    });
   };
 
   const methods = useForm<SignInSchema>({
@@ -66,7 +94,10 @@ const SignInPage = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm mt-6"
+                className={`w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm mt-6 ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={loading}
               >
                 Sign In
               </Button>
