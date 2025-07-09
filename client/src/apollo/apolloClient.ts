@@ -1,3 +1,5 @@
+import { LOCALSTORAGE_KEYS } from "@/constants";
+import { getItem } from "@/services/local-storage";
 import {
   ApolloClient,
   ApolloLink,
@@ -14,11 +16,13 @@ const httpLink = new HttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("accessToken");
+  const token = getItem(LOCALSTORAGE_KEYS.AUTH.ACCESS_TOKEN);
 
   return {
-    ...headers,
-    authorization: token ? `Bearer ${token}` : "",
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
   };
 });
 

@@ -74,7 +74,7 @@ export type PublicUser = {
 
 export type Query = {
   __typename?: "Query";
-  me?: Maybe<User>;
+  me: PublicUser;
 };
 
 export type Tokens = {
@@ -89,6 +89,18 @@ export type User = {
   id: Scalars["ID"]["output"];
   password: Scalars["String"]["output"];
   username: Scalars["String"]["output"];
+};
+
+export type MeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type MeQuery = {
+  __typename?: "Query";
+  me: {
+    __typename?: "PublicUser";
+    id: string;
+    username: string;
+    email: string;
+  };
 };
 
 export type CreateUserMutationVariables = Exact<{
@@ -135,6 +147,33 @@ export type LoginMutation = {
   };
 };
 
+export const MeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Me" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "me" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "username" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MeQuery, MeQueryVariables>;
 export const CreateUserDocument = {
   kind: "Document",
   definitions: [
