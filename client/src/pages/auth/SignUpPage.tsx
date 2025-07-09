@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,18 +15,26 @@ import RHFInput from "@/components/rhf-input";
 import { useMutation } from "@apollo/client";
 import { CreateUserDocument } from "@/graphql/types";
 import { toast } from "sonner";
+import { setItem } from "@/services/local-storage";
+import { LOCALSTORAGE_KEYS, ROUTES } from "@/constants";
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const [registerMutation, { loading }] = useMutation(CreateUserDocument, {
     onError(error) {
-      console.log("got error", error.graphQLErrors);
       if (error.graphQLErrors.length)
         toast.error(error.graphQLErrors[0].message);
       else if (error.networkError) toast.error(error.networkError.message);
       else toast.error("Failed to register!");
     },
-    onCompleted(data, clientOptions) {
-      console.log("got data", data, clientOptions);
+    onCompleted(data) {
+      if (data.createUser.tokens) {
+        const { accessToken, refreshToken } = data.createUser.tokens;
+        setItem(LOCALSTORAGE_KEYS.AUTH.ACCESS_TOKEN, accessToken);
+        setItem(LOCALSTORAGE_KEYS.AUTH.REFRESH_TOKEN, refreshToken);
+        toast.success("Account created!");
+        navigate(ROUTES.INDEX);
+      } else throw new Error("Failed to register");
     },
   });
 

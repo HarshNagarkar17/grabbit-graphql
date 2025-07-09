@@ -19,7 +19,7 @@ const handleError = (error: unknown): never => {
                 : error.statusCode === 409
                   ? "CONFLICT"
                   : "BAD_REQUEST",
-        http: { status: error.statusCode },
+        http: { status: 200 },
       },
     });
   }
