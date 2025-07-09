@@ -60,6 +60,18 @@ export class UserService {
       throw new DatabaseError("Failed to login user");
     }
   }
+  async getUserFromID(id: string): Promise<UserWithoutPassword> {
+    try {
+      const user = await prisma.user.findUnique({ where: { id } });
+      if (!user) throw new NotFoundError("User not found");
+
+      const { password, ...userWithoutpassword } = user;
+      return userWithoutpassword;
+    } catch (error) {
+      if (error instanceof AppError) throw error;
+      throw new DatabaseError("Failed to get user!");
+    }
+  }
 }
 
 export const userService = new UserService();

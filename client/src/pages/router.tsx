@@ -3,9 +3,14 @@ import IndexPage from "./Index";
 import AuthLayout from "./auth/AuthLayout";
 import SignInPage from "./auth/SignIn";
 import SignUpPage from "./auth/SignUpPage";
+import ProtectedPagesLayout from "./ProtectedPagesLayout";
 
 const routes: RouteObject[] = [
-  { path: "/", index: true, element: <IndexPage /> },
+  {
+    path: "/",
+    element: <ProtectedPagesLayout />,
+    children: [{ path: "/", index: true, element: <IndexPage /> }],
+  },
   {
     path: "auth",
     element: <AuthLayout />,

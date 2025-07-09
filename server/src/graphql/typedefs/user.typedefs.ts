@@ -41,7 +41,7 @@ export const userTypeDefs = gql`
   }
 
   type Query {
-    me: User
+    me: PublicUser!
   }
 
   type Mutation {

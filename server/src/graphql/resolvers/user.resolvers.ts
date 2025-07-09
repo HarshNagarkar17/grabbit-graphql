@@ -1,7 +1,7 @@
 import { createUserSchema, loginSchema } from "@/models/user.model";
 import { userService } from "@/services/user.service";
 import { generateAuthTokens } from "@/utils/auth";
-import { AppError } from "@/utils/errors";
+import { AppError, AuthorizationError } from "@/utils/errors";
 import { GraphQLError } from "graphql";
 import { ZodError } from "zod";
 
@@ -39,7 +39,15 @@ const handleError = (error: unknown): never => {
 };
 
 export const userResolvers = {
-  Query: {},
+  Query: {
+    me: async (_: any, __: any, context: { user?: { id: string } | null }) => {
+      if (!context.user)
+        throw new AuthorizationError("Authorization is required");
+
+      const user = await userService.getUserFromID(context.user.id);
+      return user;
+    },
+  },
   Mutation: {
     createUser: async (
       _: any,
