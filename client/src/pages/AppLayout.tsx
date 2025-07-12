@@ -46,7 +46,7 @@ const AppLayout = () => {
       <div className="w-60 bg-white border-r border-gray-200 flex flex-col shadow-sm fixed left-0 top-0 h-screen">
         <div className="p-6 border-b border-gray-100">
           <h1 className="text-xl font-semibold text-gray-900 tracking-tight">
-            DevSave
+            Grabbit
           </h1>
           <p className="text-sm text-gray-500 mt-1">Content for developers</p>
         </div>

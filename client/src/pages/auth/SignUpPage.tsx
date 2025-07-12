@@ -64,7 +64,7 @@ const SignUpPage = () => {
     <>
       <div className="text-center fade-in">
         <h1 className="text-3xl font-semibold text-gray-900 tracking-tight">
-          DevSave
+          Grabbit
         </h1>
         <p className="text-gray-600 mt-3 text-base">
           Save and organize your developer content
