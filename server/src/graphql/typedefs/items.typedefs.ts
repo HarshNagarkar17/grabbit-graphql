@@ -13,10 +13,6 @@ export const itemsTypeDefs = gql`
     type: String!
   }
 
-  input AddPayload {
-    item: ItemInput!
-  }
-
   type AddResponse {
     id: String!
     title: String!
@@ -24,7 +20,10 @@ export const itemsTypeDefs = gql`
     type: String!
   }
 
+  type Query {
+    getUserItems: [Item]!
+  }
   type Mutation {
-    add(input: AddPayload!): AddResponse!
+    add(input: ItemInput!): AddResponse!
   }
 `;
