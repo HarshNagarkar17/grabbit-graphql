@@ -1,4 +1,4 @@
-import { LOCALSTORAGE_KEYS } from "@/constants";
+import { LOCALSTORAGE_KEYS, ROUTES } from "@/constants";
 import { getItem } from "@/services/local-storage";
 import {
   ApolloClient,
@@ -40,12 +40,22 @@ const roundTripLink = new ApolloLink((operation, forward) => {
 });
 
 const errorLink = onError(({ graphQLErrors, networkError, protocolErrors }) => {
-  if (graphQLErrors)
+  if (graphQLErrors) {
     graphQLErrors.forEach(({ message, locations, path }) =>
       console.log(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
       )
     );
+    graphQLErrors.some((error) => {
+      if (
+        error.extensions?.code === "UNAUTHENTICATED" ||
+        error.extensions?.code === "FORBIDDEN"
+      ) {
+        localStorage.clear();
+        window.location.href = ROUTES.AUTH.LOGIN;
+      }
+    });
+  }
 
   if (protocolErrors) {
     protocolErrors.forEach(({ message, extensions }) => {
