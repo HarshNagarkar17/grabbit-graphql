@@ -6,6 +6,7 @@ import SignUpPage from "./auth/SignUpPage";
 import ProtectedPagesLayout from "./ProtectedPagesLayout";
 import AddContentForm from "@/components/AddContentForm";
 import Settings from "@/components/Settings";
+import Library from "@/components/Library";
 
 const routes: RouteObject[] = [
   {
@@ -15,6 +16,7 @@ const routes: RouteObject[] = [
       { path: "/", index: true, element: <IndexPage /> },
       { path: "/add", element: <AddContentForm /> },
       { path: "/settings", element: <Settings /> },
+      { path: "/library", element: <Library /> },
     ],
   },
   {
