@@ -4,5 +4,7 @@ mutation add($input: ItemInput!) {
     title
     url
     type
+    createdAt
+    updatedAt
   }
 }

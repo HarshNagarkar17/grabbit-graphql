@@ -30,9 +30,11 @@ export type Scalars = {
 
 export type AddResponse = {
   __typename?: "AddResponse";
+  createdAt: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
+  updatedAt: Scalars["String"]["output"];
   url: Scalars["String"]["output"];
 };
 
@@ -160,6 +162,8 @@ export type AddMutation = {
     title: string;
     url: string;
     type: string;
+    createdAt: string;
+    updatedAt: string;
   };
 };
 
@@ -310,6 +314,8 @@ export const AddDocument = {
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "url" } },
                 { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+                { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
               ],
             },
           },

@@ -12,6 +12,9 @@ import { contentSchema, type ContentSchema } from "@/schema/content";
 import FormProvider from "./FormProvider";
 import RHFInput from "./rhf-input";
 import RHFSelector from "./rhf-selector";
+import { useMutation } from "@apollo/client";
+import { AddDocument, UserItemsDocument } from "@/graphql/types";
+import { toast } from "sonner";
 
 const AddContentForm = () => {
   const methods = useForm<ContentSchema>({
@@ -24,9 +27,53 @@ const AddContentForm = () => {
     },
   });
   const { reset } = methods;
+  const [add, { loading }] = useMutation(AddDocument, {
+    update(cache, { data }) {
+      if (data?.add) {
+        const cachedItems = cache?.readQuery({ query: UserItemsDocument });
+
+        if (cachedItems) {
+          const newItem = {
+            __typename: "Item" as const,
+            id: data.add.id,
+            title: data.add.title,
+            type: data.add.type,
+            url: data.add.url,
+            createdAt: data.add.createdAt,
+            updatedAt: data.add.updatedAt,
+          };
+
+          cache.writeQuery({
+            query: UserItemsDocument,
+            data: {
+              getUserItems: [...cachedItems.getUserItems, newItem],
+            },
+          });
+        }
+      }
+    },
+    onError(error) {
+      if (error.graphQLErrors.length)
+        toast.error(error.graphQLErrors[0].message);
+      else if (error.networkError) toast.error(error.networkError.message);
+      else toast.error("Failed to create item!");
+    },
+    onCompleted() {
+      toast.success("Item added!");
+      reset();
+    },
+  });
 
   const handleSubmit = (values: ContentSchema) => {
-    console.log({ values });
+    add({
+      variables: {
+        input: {
+          title: values.title,
+          type: values.contentType,
+          url: values.url,
+        },
+      },
+    });
   };
 
   return (
@@ -71,7 +118,10 @@ const AddContentForm = () => {
               <div className="flex space-x-3 pt-4">
                 <Button
                   type="submit"
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white shadow-sm cursor-pointer"
+                  className={`flex-1 bg-blue-600 hover:bg-blue-700 text-white shadow-sm cursor-pointer ${
+                    loading ? "opacity-60" : "opacity-100"
+                  }`}
+                  disabled={loading}
                 >
                   Save Content
                 </Button>
@@ -80,6 +130,7 @@ const AddContentForm = () => {
                   type="button"
                   className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50 cursor-pointer"
                   onClick={() => reset()}
+                  disabled={loading}
                 >
                   Cancel
                 </Button>

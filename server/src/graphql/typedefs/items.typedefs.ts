@@ -21,6 +21,8 @@ export const itemsTypeDefs = gql`
     title: String!
     url: String!
     type: String!
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Query {
