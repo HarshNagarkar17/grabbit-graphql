@@ -5,13 +5,43 @@ import { useQuery } from "@apollo/client";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedPagesLayout = () => {
+  const accessToken = getItem(LOCALSTORAGE_KEYS.AUTH.ACCESS_TOKEN);
+
   const { loading, error, data } = useQuery(MeDocument, {
-    skip: !getItem(LOCALSTORAGE_KEYS.AUTH.ACCESS_TOKEN),
+    skip: !accessToken,
     notifyOnNetworkStatusChange: true,
   });
 
-  if (loading) return <div>loading...</div>;
-  if (error || !data?.me.id) return <Navigate to={ROUTES.AUTH.LOGIN} />;
+  if (!accessToken) return <Navigate to={ROUTES.AUTH.LOGIN} />;
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <span className="ml-2 text-gray-600">Loading...</span>
+      </div>
+    );
+  }
+
+  if (error || !data?.me.id)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-red-600 mb-2">
+            Something went wrong
+          </h2>
+          <p className="text-gray-600 mb-4">
+            Please check your connection and try again
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
 
   return <Outlet />;
 };

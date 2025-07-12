@@ -1,42 +1,7 @@
 import { createUserSchema, loginSchema } from "@/models/user.model";
 import { userService } from "@/services/user.service";
 import { generateAuthTokens } from "@/utils/auth";
-import { AppError, AuthorizationError } from "@/utils/errors";
-import { GraphQLError } from "graphql";
-import { ZodError } from "zod";
-
-const handleError = (error: unknown): never => {
-  if (error instanceof AppError) {
-    throw new GraphQLError(error.message, {
-      extensions: {
-        code:
-          error.statusCode === 401
-            ? "UNAUTHENTICATED"
-            : error.statusCode === 403
-              ? "FORBIDDEN"
-              : error.statusCode === 404
-                ? "NOT_FOUND"
-                : error.statusCode === 409
-                  ? "CONFLICT"
-                  : "BAD_REQUEST",
-        http: { status: 200 },
-      },
-    });
-  }
-
-  if (error instanceof ZodError) {
-    throw new GraphQLError(error.errors[0]?.message || "Validation failed", {
-      extensions: {
-        code: "BAD_REQUEST",
-        http: { status: 400 },
-      },
-    });
-  }
-
-  throw new GraphQLError("Internal server error", {
-    extensions: { code: "INTERNAL_SERVER_ERROR", http: { status: 500 } },
-  });
-};
+import { AuthorizationError, handleError } from "@/utils/errors";
 
 export const userResolvers = {
   Query: {

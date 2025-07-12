@@ -1,3 +1,6 @@
+import { GraphQLError } from "graphql";
+import { ZodError } from "zod";
+
 export class AppError extends Error {
   public readonly statusCode: number;
   public readonly isOperational: boolean;
@@ -50,3 +53,45 @@ export class DatabaseError extends AppError {
     super(message, 500);
   }
 }
+
+export class ServerError extends AppError {
+  constructor(
+    message: string = "Internal server error",
+    statusCode: number = 500
+  ) {
+    super(message, statusCode);
+  }
+}
+
+export const handleError = (error: unknown): never => {
+  if (error instanceof AppError) {
+    throw new GraphQLError(error.message, {
+      extensions: {
+        code:
+          error.statusCode === 401
+            ? "UNAUTHENTICATED"
+            : error.statusCode === 403
+              ? "FORBIDDEN"
+              : error.statusCode === 404
+                ? "NOT_FOUND"
+                : error.statusCode === 409
+                  ? "CONFLICT"
+                  : "BAD_REQUEST",
+        http: { status: 200 },
+      },
+    });
+  }
+
+  if (error instanceof ZodError) {
+    throw new GraphQLError(error.errors[0]?.message || "Validation failed", {
+      extensions: {
+        code: "BAD_REQUEST",
+        http: { status: 400 },
+      },
+    });
+  }
+
+  throw new GraphQLError("Internal server error", {
+    extensions: { code: "INTERNAL_SERVER_ERROR", http: { status: 500 } },
+  });
+};
