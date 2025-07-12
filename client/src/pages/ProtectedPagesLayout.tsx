@@ -23,7 +23,17 @@ const ProtectedPagesLayout = () => {
     );
   }
 
-  if (error || !data?.me.id)
+  if (error) {
+    const isAuthError = error?.graphQLErrors?.some(
+      (err) =>
+        err.extensions?.code === "UNAUTHENTICATED" ||
+        err.extensions?.code === "FORBIDDEN"
+    );
+
+    if (isAuthError) {
+      localStorage.clear();
+      window.location.href = ROUTES.AUTH.LOGIN;
+    }
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -42,6 +52,11 @@ const ProtectedPagesLayout = () => {
         </div>
       </div>
     );
+  }
+
+  if (!data?.me) {
+    window.location.href = ROUTES.AUTH.LOGIN;
+  }
 
   return <Outlet />;
 };
