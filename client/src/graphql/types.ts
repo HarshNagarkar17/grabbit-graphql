@@ -28,6 +28,18 @@ export type Scalars = {
   Float: { input: number; output: number };
 };
 
+export type AddPayload = {
+  item: ItemInput;
+};
+
+export type AddResponse = {
+  __typename?: "AddResponse";
+  id: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+  type: Scalars["String"]["output"];
+  url: Scalars["String"]["output"];
+};
+
 export type AuthPayload = {
   email: Scalars["String"]["input"];
   password: Scalars["String"]["input"];
@@ -38,6 +50,19 @@ export type AuthResponse = {
   __typename?: "AuthResponse";
   tokens: Tokens;
   user: PublicUser;
+};
+
+export type Item = {
+  __typename?: "Item";
+  title: Scalars["String"]["output"];
+  type: Scalars["String"]["output"];
+  url: Scalars["String"]["output"];
+};
+
+export type ItemInput = {
+  title: Scalars["String"]["input"];
+  type: Scalars["String"]["input"];
+  url: Scalars["String"]["input"];
 };
 
 export type LoginPayload = {
@@ -53,8 +78,13 @@ export type LoginResponse = {
 
 export type Mutation = {
   __typename?: "Mutation";
+  add: AddResponse;
   createUser: AuthResponse;
   login: LoginResponse;
+};
+
+export type MutationAddArgs = {
+  input: AddPayload;
 };
 
 export type MutationCreateUserArgs = {

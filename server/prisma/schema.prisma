@@ -14,4 +14,14 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  item      item[]
+}
+
+model item {
+  id     String @id @default(cuid())
+  title  String
+  url    String
+  type   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }

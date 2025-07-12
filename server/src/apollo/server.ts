@@ -61,9 +61,14 @@ export const startApolloServer = async (app: Application) => {
 
         let user = null;
 
+        const isIntrospection =
+          req.body?.query?.includes("__schema") ||
+          req.body?.query?.includes("__type") ||
+          operationName?.toLowerCase().includes("introspection");
+
         try {
           const isAuthRequired =
-            !PUBLIC_OPEATIONS.includes(parsedOperationName);
+            !PUBLIC_OPEATIONS.includes(parsedOperationName) && !isIntrospection;
           user = await authenticatedUser(authenticatedReq);
           if (isAuthRequired && !user)
             throw new AuthenticationError("Authentication token required");
