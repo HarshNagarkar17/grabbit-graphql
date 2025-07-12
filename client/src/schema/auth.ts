@@ -2,7 +2,10 @@ import { z } from "zod";
 
 export const signInSchema = z.object({
   email: z.string().email("Enter valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+  password: z
+    .string()
+    .transform((val) => val.trim())
+    .refine((val) => val.length > 8, { message: "Password is required" }),
 });
 
 export const signUpSchema = z.object({

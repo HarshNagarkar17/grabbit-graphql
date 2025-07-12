@@ -4,12 +4,16 @@ import AuthLayout from "./auth/AuthLayout";
 import SignInPage from "./auth/SignIn";
 import SignUpPage from "./auth/SignUpPage";
 import ProtectedPagesLayout from "./ProtectedPagesLayout";
+import AddContentForm from "@/components/AddContentForm";
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <ProtectedPagesLayout />,
-    children: [{ path: "/", index: true, element: <IndexPage /> }],
+    children: [
+      { path: "/", index: true, element: <IndexPage /> },
+      { path: "/add", element: <AddContentForm /> },
+    ],
   },
   {
     path: "auth",

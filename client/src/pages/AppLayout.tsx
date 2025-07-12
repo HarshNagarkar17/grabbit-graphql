@@ -25,7 +25,7 @@ const AppLayout = () => {
   const { data } = useUser();
 
   const navItems = [
-    { icon: Home, label: "Dashboard", path: "/dashboard" },
+    { icon: Home, label: "Dashboard", path: "/" },
     { icon: FolderOpen, label: "Library", path: "/library" },
     { icon: Plus, label: "Add Content", path: "/add" },
     { icon: Settings, label: "Settings", path: "/settings" },
