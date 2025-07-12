@@ -6,11 +6,15 @@ import { AuthorizationError, handleError } from "@/utils/errors";
 export const userResolvers = {
   Query: {
     me: async (_: any, __: any, context: { user?: { id: string } | null }) => {
-      if (!context.user)
-        throw new AuthorizationError("Authorization is required");
+      try {
+        if (!context.user)
+          throw new AuthorizationError("Authorization is required");
 
-      const user = await userService.getUserFromID(context.user.id);
-      return user;
+        const user = await userService.getUserFromID(context.user.id);
+        return user;
+      } catch (error) {
+        return handleError(error);
+      }
     },
   },
   Mutation: {

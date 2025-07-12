@@ -8,10 +8,14 @@ import {
   authenticatedUser,
   AuthenticatedUserRequest,
 } from "@/middleware/auth.middleware";
-import { parse, getOperationAST } from "graphql";
+import {
+  parse,
+  getOperationAST,
+  GraphQLFormattedErrorExtensions,
+} from "graphql";
 import { AuthenticationError, handleError, ServerError } from "@/utils/errors";
 
-export const PUBLIC_OPEATIONS = ["Me", "Login"];
+export const PUBLIC_OPEATIONS = ["Login"];
 
 export const startApolloServer = async (app: Application) => {
   const server = new ApolloServer({
@@ -27,9 +31,8 @@ export const startApolloServer = async (app: Application) => {
         message: formattedError.message,
         path: formattedError.path || [],
         locations: formattedError.locations || [],
-        ...(isProduction && {
-          extensions: formattedError.extensions,
-        }),
+        extensions:
+          (formattedError.extensions as GraphQLFormattedErrorExtensions) || [],
       };
     },
   });
