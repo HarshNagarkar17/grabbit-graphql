@@ -28,10 +28,6 @@ export type Scalars = {
   Float: { input: number; output: number };
 };
 
-export type AddPayload = {
-  item: ItemInput;
-};
-
 export type AddResponse = {
   __typename?: "AddResponse";
   id: Scalars["String"]["output"];
@@ -54,8 +50,11 @@ export type AuthResponse = {
 
 export type Item = {
   __typename?: "Item";
+  createdAt: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
+  updatedAt: Scalars["String"]["output"];
   url: Scalars["String"]["output"];
 };
 
@@ -84,7 +83,7 @@ export type Mutation = {
 };
 
 export type MutationAddArgs = {
-  input: AddPayload;
+  input: ItemInput;
 };
 
 export type MutationCreateUserArgs = {
@@ -104,6 +103,7 @@ export type PublicUser = {
 
 export type Query = {
   __typename?: "Query";
+  getUserItems: Array<Item>;
   me: PublicUser;
 };
 
@@ -121,6 +121,21 @@ export type User = {
   username: Scalars["String"]["output"];
 };
 
+export type UserItemsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type UserItemsQuery = {
+  __typename?: "Query";
+  getUserItems: Array<{
+    __typename?: "Item";
+    id: string;
+    title: string;
+    url: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  }>;
+};
+
 export type MeQueryVariables = Exact<{ [key: string]: never }>;
 
 export type MeQuery = {
@@ -130,6 +145,21 @@ export type MeQuery = {
     id: string;
     username: string;
     email: string;
+  };
+};
+
+export type AddMutationVariables = Exact<{
+  input: ItemInput;
+}>;
+
+export type AddMutation = {
+  __typename?: "Mutation";
+  add: {
+    __typename?: "AddResponse";
+    id: string;
+    title: string;
+    url: string;
+    type: string;
   };
 };
 
@@ -177,6 +207,36 @@ export type LoginMutation = {
   };
 };
 
+export const UserItemsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "UserItems" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+                { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserItemsQuery, UserItemsQueryVariables>;
 export const MeDocument = {
   kind: "Document",
   definitions: [
@@ -204,6 +264,60 @@ export const MeDocument = {
     },
   ],
 } as unknown as DocumentNode<MeQuery, MeQueryVariables>;
+export const AddDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "add" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ItemInput" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "add" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AddMutation, AddMutationVariables>;
 export const CreateUserDocument = {
   kind: "Document",
   definitions: [

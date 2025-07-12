@@ -18,10 +18,12 @@ model User {
 }
 
 model item {
-  id     String @id @default(cuid())
-  title  String
-  url    String
-  type   String
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  id        String   @id @default(cuid())
+  title     String
+  url       String
+  type      String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

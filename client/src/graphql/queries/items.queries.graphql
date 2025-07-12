@@ -1,0 +1,10 @@
+query UserItems {
+  getUserItems {
+    id
+    title
+    url
+    type
+    createdAt
+    updatedAt
+  }
+}

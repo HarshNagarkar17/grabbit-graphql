@@ -1,0 +1,8 @@
+mutation add($input: ItemInput!) {
+  add(input: $input) {
+    id
+    title
+    url
+    type
+  }
+}

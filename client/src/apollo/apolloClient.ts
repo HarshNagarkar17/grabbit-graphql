@@ -78,6 +78,7 @@ const apolloClient = new ApolloClient({
   defaultOptions: {
     watchQuery: {
       errorPolicy: "all",
+      fetchPolicy: "cache-first",
       notifyOnNetworkStatusChange: true,
     },
     query: {

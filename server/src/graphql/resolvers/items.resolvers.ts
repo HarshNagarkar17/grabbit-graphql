@@ -27,6 +27,7 @@ export const itemsResolvers = {
       context: { user: { id: string } }
     ) => {
       try {
+        await new Promise((res) => setTimeout(res, 3000));
         const items = await prisma.item.findMany({
           where: {
             userId: context.user.id,

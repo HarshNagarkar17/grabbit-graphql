@@ -2,9 +2,12 @@ import gql from "graphql-tag";
 
 export const itemsTypeDefs = gql`
   type Item {
+    id: String!
     title: String!
     url: String!
     type: String!
+    createdAt: String!
+    updatedAt: String!
   }
 
   input ItemInput {
@@ -21,7 +24,7 @@ export const itemsTypeDefs = gql`
   }
 
   type Query {
-    getUserItems: [Item]!
+    getUserItems: [Item!]!
   }
   type Mutation {
     add(input: ItemInput!): AddResponse!
