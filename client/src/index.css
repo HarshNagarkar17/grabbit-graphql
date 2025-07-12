@@ -118,3 +118,60 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .glass-card {
+    @apply bg-white border border-gray-200 shadow-sm;
+  }
+  
+  .content-card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 ease-in-out hover:border-gray-300;
+  }
+  
+  .sidebar-item {
+    @apply flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ease-in-out;
+  }
+  
+  .sidebar-item-active {
+    @apply bg-gray-100 text-gray-900 shadow-sm;
+  }
+  
+  .sidebar-item-inactive {
+    @apply text-gray-600 hover:bg-gray-50 hover:text-gray-900;
+  }
+  
+  .badge-pill {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border shadow-sm;
+  }
+  
+  .badge-youtube {
+    @apply bg-red-50 text-red-700 border-red-200;
+  }
+  
+  .badge-github {
+    @apply bg-gray-50 text-gray-700 border-gray-200;
+  }
+  
+  .badge-blog {
+    @apply bg-blue-50 text-blue-700 border-blue-200;
+  }
+  
+  .badge-text {
+    @apply bg-green-50 text-green-700 border-green-200;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.4s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

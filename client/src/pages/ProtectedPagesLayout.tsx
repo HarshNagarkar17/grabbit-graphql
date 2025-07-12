@@ -1,7 +1,8 @@
 import { LOCALSTORAGE_KEYS, ROUTES } from "@/constants";
 import useUser from "@/hooks/use-user";
 import { getItem } from "@/services/local-storage";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import AppLayout from "./AppLayout";
 
 const ProtectedPagesLayout = () => {
   const accessToken = getItem(LOCALSTORAGE_KEYS.AUTH.ACCESS_TOKEN);
@@ -54,7 +55,7 @@ const ProtectedPagesLayout = () => {
     window.location.href = ROUTES.AUTH.LOGIN;
   }
 
-  return <Outlet />;
+  return <AppLayout />;
 };
 
 export default ProtectedPagesLayout;
