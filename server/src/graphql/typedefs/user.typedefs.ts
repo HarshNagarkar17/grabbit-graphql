@@ -30,6 +30,11 @@ export const userTypeDefs = gql`
     password: String!
   }
 
+  input UpdatePayload {
+    username: String!
+    email: String!
+  }
+
   type LoginResponse {
     user: PublicUser!
     tokens: Tokens!
@@ -47,5 +52,6 @@ export const userTypeDefs = gql`
   type Mutation {
     createUser(input: AuthPayload!): AuthResponse!
     login(input: LoginPayload!): LoginResponse!
+    updateUser(input: UpdatePayload): PublicUser!
   }
 `;

@@ -25,3 +25,11 @@ mutation Login($input: LoginPayload!) {
     }
   }
 }
+
+mutation Update($input: UpdatePayload!) {
+  updateUser(input: $input) {
+    id
+    username
+    email
+  }
+}

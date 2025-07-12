@@ -82,6 +82,7 @@ export type Mutation = {
   add: AddResponse;
   createUser: AuthResponse;
   login: LoginResponse;
+  updateUser: PublicUser;
 };
 
 export type MutationAddArgs = {
@@ -94,6 +95,10 @@ export type MutationCreateUserArgs = {
 
 export type MutationLoginArgs = {
   input: LoginPayload;
+};
+
+export type MutationUpdateUserArgs = {
+  input?: InputMaybe<UpdatePayload>;
 };
 
 export type PublicUser = {
@@ -113,6 +118,11 @@ export type Tokens = {
   __typename?: "Tokens";
   accessToken: Scalars["String"]["output"];
   refreshToken: Scalars["String"]["output"];
+};
+
+export type UpdatePayload = {
+  email: Scalars["String"]["input"];
+  username: Scalars["String"]["input"];
 };
 
 export type User = {
@@ -208,6 +218,20 @@ export type LoginMutation = {
       accessToken: string;
       refreshToken: string;
     };
+  };
+};
+
+export type UpdateMutationVariables = Exact<{
+  input: UpdatePayload;
+}>;
+
+export type UpdateMutation = {
+  __typename?: "Mutation";
+  updateUser: {
+    __typename?: "PublicUser";
+    id: string;
+    username: string;
+    email: string;
   };
 };
 
@@ -488,3 +512,56 @@ export const LoginDocument = {
     },
   ],
 } as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
+export const UpdateDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "Update" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "UpdatePayload" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateUser" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "username" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateMutation, UpdateMutationVariables>;

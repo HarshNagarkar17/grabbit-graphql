@@ -23,6 +23,18 @@ export const signUpSchema = z.object({
     ),
 });
 
+export const updateUserSchema = z.object({
+  username: z
+    .string()
+    .transform((val) => val.trim())
+    .refine((val) => val.length >= 3, {
+      message: "Username should be atleast 3 characters long",
+    }),
+  email: z.string().email("Enter valid email address"),
+});
+
 type SignInSchema = z.infer<typeof signInSchema>;
 type SignUpSchema = z.infer<typeof signUpSchema>;
-export type { SignInSchema, SignUpSchema };
+type UpdateUserSchema = z.infer<typeof updateUserSchema>;
+
+export type { SignInSchema, SignUpSchema, UpdateUserSchema };

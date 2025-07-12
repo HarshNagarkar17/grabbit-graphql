@@ -19,6 +19,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import useUser from "@/hooks/use-user";
+import apolloClient from "@/apollo/apolloClient";
+import { ROUTES } from "@/constants";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -32,6 +34,12 @@ const AppLayout = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleSignOut = () => {
+    localStorage.clear();
+    apolloClient.clearStore();
+    window.location.href = ROUTES.AUTH.LOGIN;
+  };
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Fixed Sidebar */}
@@ -96,7 +104,7 @@ const AppLayout = () => {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer text-red-600 focus:text-red-600"
-                onClick={() => (window.location.href = "/")}
+                onClick={handleSignOut}
               >
                 <LogOut className="h-4 w-4 mr-2" />
                 Sign Out
