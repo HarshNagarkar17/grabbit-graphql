@@ -1,16 +1,12 @@
 import { LOCALSTORAGE_KEYS, ROUTES } from "@/constants";
-import { MeDocument } from "@/graphql/types";
+import useUser from "@/hooks/use-user";
 import { getItem } from "@/services/local-storage";
-import { useQuery } from "@apollo/client";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedPagesLayout = () => {
   const accessToken = getItem(LOCALSTORAGE_KEYS.AUTH.ACCESS_TOKEN);
 
-  const { loading, error, data } = useQuery(MeDocument, {
-    skip: !accessToken,
-    notifyOnNetworkStatusChange: true,
-  });
+  const { loading, error, data } = useUser();
 
   if (!accessToken) return <Navigate to={ROUTES.AUTH.LOGIN} />;
 
